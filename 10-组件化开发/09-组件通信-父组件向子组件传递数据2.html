@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <!-- 父组件向子组件通过 props 对象传递数据 -->
+  <div id="app">
+    <cpn :cmovies="movies" :cmsg="message" :cname="name"></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <ul>
+        <li v-for="item in cmovies">{{item}}</li>
+      </ul>
+      <h2>{{cmsg}}</h2>
+      <h1>{{cname}}</h1>
+    </div>
+  </template>
+
+  <script>
+    const cpn = {
+    template: '#cpn',
+    props: {
+      // 1、指定 props 对象中的变量的类型
+      /*
+        这里支持的类型有：
+          String
+          Number
+          Boolean
+          Array
+          Object
+          Date
+          Function
+          Symbol
+      */
+      cmovies: Array,
+      cmsg: String,
+
+      // 2、提供一些默认值，以及必传值
+      /*
+        但如果是 Array 或者 Object 时，默认值的格式必须是工厂函数的格式。
+        如下：
+      */
+      cname: {
+        type: String,
+        default: 'aaaaaa',
+        required: true
+      },
+      hobbies: {
+        type: Array,
+        default() { //数组的默认值不能直接写成 default: []，会报错
+          return []
+        }
+      },
+      validator: function(value) { //自定义验证函数
+        return ['success', 'warning', 'danger'].indexOf(value) !== -1
+      }
+    },
+    data() {
+      return {
+
+      }
+    },
+    methods: {
+
+    }
+  }
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        movies: ['教父', '无问西东', '中国女排'],
+        message: 'Hello Vue',
+        name: 'moon'
+      },
+      components: {
+        'cpn': cpn
+      }
+    });
+  </script>
+</body>
+</html>

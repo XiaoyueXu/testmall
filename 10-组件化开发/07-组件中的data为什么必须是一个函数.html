@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 
+      以下三个组件实例对象没有共享 data 对象，
+      这是因为：组件的 data 是函数，
+      而我们知道，每次调用函数时，会在栈空间创建新的变量。
+      这样就保证了，三个组件之间的数据互不影响。
+
+      如果你需要三个组件之间互相影响的话，也可以做到：
+      首先在组件外部定义一个 const 标识，
+      然后在内部的 data 函数中 return 该标识。
+      const obj = {
+        Variable1: X1,
+        Variable2: X2,
+        ....
+      }
+      Vue.component('cpn', {
+        template: '#id',
+        data() {
+          return obj;
+        }
+      })
+     -->
+
+    <counter></counter>
+    <counter></counter>
+    <counter></counter>
+  </div>
+
+  <template id="counter">
+    <div>
+      <div>计数器的值： {{count}}</div>
+      <button @click="plus">+</button>
+      <button @click="minus">-</button>
+    </div>
+  </template>
+
+  <script>
+    // 1. 注册组件
+    Vue.component('counter', {
+      template: '#counter',
+      data() {
+        return {
+          count: 0
+        }
+      },
+      methods: {
+        plus() {
+          this.count++;
+        },
+        minus() {
+          this.count--;
+        }
+
+      }
+    })
+
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<!-- 父组件向子组件通过 props 数组传递数据 -->
+<body>
+  <div id="app">
+    <!-- 
+      通过 v-bind 绑定属性，以将父组件的 data 传递给子组件
+     -->
+    <cpn :cmovies="movies" :cmsg="message"></cpn>
+  </div>
+
+  <template id="cpn">
+    <!-- 
+      父组件的 data 以 props 的形式传入子组件后，
+      就可以在此进行使用了。这里的变量使用子组件里定义的变量名。
+     -->
+    <div>
+      <ul>
+        <li v-for="item in cmovies">{{item}}</li>
+      </ul>
+      <div>{{cmsg}}</div>
+    </div>
+  </template>
+
+  <script>
+    /*
+      父组件向子组件中传递数据：props
+    */ 
+    const cpn = {
+      template: '#cpn',
+      props: ['cmovies', 'cmsg'],
+      data() {
+        return {
+
+        }
+      },
+      methods: {
+
+      },
+    }
+
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        movies: ['金海旺', '海贼王', '海尔兄弟'],
+        message: '你好啊'
+      },
+      components: {
+        'cpn': cpn
+      }
+    });
+  </script>
+</body>
+</html>

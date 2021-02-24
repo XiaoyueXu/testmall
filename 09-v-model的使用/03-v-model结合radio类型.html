@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 
+      让两个单选框互斥有两种方法：
+      1、每个 input 添加内容相同的 name 属性
+      <input type="radio" name="sex" value="男">男
+      <input type="radio" name="sex" value="女">女
+
+      2、每个 input 绑定内容相同的 v-model
+      <input type="radio" value="男" v-model="sex">男
+      <input type="radio" value="女" v-model="sex">女
+     -->
+    <label for="male">
+      <input type="radio" value="男" v-model="sex1">男
+    </label>
+    <label for="female">
+      <input type="radio" value="女" v-model="sex1">女
+    </label>
+    <h2>{{sex1}}</h2>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        sex1: '男'
+      }
+    });
+  </script>
+</body>
+</html>

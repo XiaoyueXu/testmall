@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1>当前计数：{{counter}}</h1>
+    <!-- <button v-on:click="counter++">+</button>
+        <button v-on:click="counter--">-</button> -->
+    <button v-on:click="add">+</button>
+    <!-- 下面是语法糖简写 -->
+    <button @click="sub">-</button>
+  </div>
+
+  <script>
+    let obj = {
+      counter: 0
+    }
+    const app = new Vue({
+      el: '#app',
+      data: obj,
+      /*
+          在类里面定义的 function 叫方法，
+          单独定义在外面的 function 叫函数。
+          方法都是与某个实例对象挂钩的。
+      */
+      methods: {
+        add: function () {
+          console.log("add");
+          // 注意：如果想使用Vue内部定义的变量，得加 this.
+          // 响应式的代理使得 this 指代 Vue 实例。
+          // 如果直接写 counter，会默认去找名为 counter 的全局变量
+          this.counter++;
+        },
+
+        sub: function () {
+          console.log("sub");
+          this.counter--;
+        }
+      },
+      beforecreated: function () {
+        console.log("beforeCreated");
+      },
+      created: function () {
+        // 一般会在 created 里做一些网络请求
+        console.log("created");
+      },
+      mounted: function () {
+        console.log("mounted");
+      }
+    });
+  </script>
+</body>
+
+</html>

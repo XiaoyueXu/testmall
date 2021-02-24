@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h2>{{firstName + ' ' + lastName}}</h2>
+    <h2>{{firstName}} {{lastName}}</h2>
+    <h2>{{getFullName()}}</h2>
+
+    <!-- 计算属性的方法名后无需加 () -->
+    <h2>{{fullName}}</h2>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        firstName: 'Lebron',
+        lastName: 'James'
+      },
+      computed: { // 计算属性(这里面也是方法，但是方法名尽量别用动词，类似于数据处理区)
+        fullName: function() {
+          return this.firstName + ' ' + this.lastName;
+        }
+      },
+      methods: {
+        getFullName: function() {
+          return this.firstName + ' ' + this.lastName;
+        }
+      },
+    });
+  </script>
+</body>
+</html>

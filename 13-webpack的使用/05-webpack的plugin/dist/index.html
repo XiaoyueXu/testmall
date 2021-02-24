@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    这里不能直接引入 .js 文件，因为文件中的 js 代码浏览器无法识别。
+    需要使用 webpack 进行打包。
+      <script src="./src/mathUtils.js"></script>
+      <script src="./src/main.js"></script>
+
+    然后引用打包后的 .js 文件
+   -->
+   <div id="app">
+   </div>
+
+   <!-- .js文件不要放在 head 里，要放在最下面 -->
+   <!--
+     编译的时候，会自动在生成的 index.html 里插入这句话，因此这里不用引入。
+     并且，编译时， src 的相对位置也不对。不需要加 ./dist 
+     <script src="./dist/bundle.js"></script>
+     -->
+
+<script type="text/javascript" src="dist/bundle.js"></script></body>
+</html>

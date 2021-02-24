@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 
+      注意：标签 v-bind: 后的 props 名是不支持驼峰命名的。
+          需要将其转换为以-连接
+     -->
+    <cpn :c-info="info" :child-my-message="myMessage"></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <div v-for="(item, name) of cInfo">{{name}}: {{item}}</div>
+      <div>{{childMyMessage}}</div>
+    </div>
+  </template>
+
+  <script>
+    // 定义局部组件
+    const cpn = {
+      template: '#cpn',
+        props: {
+          cInfo: {
+            type: Object,
+            default() {
+              return {}
+            }
+          },
+          childMyMessage: {
+            type: String
+          }
+        },
+        data() {
+          return {
+
+          }
+        },
+        methods: {
+
+        }
+    };
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        info: {
+          name: 'why',
+          age: 18,
+          height: 1.88
+        },
+        myMessage: 'moon'
+      },
+      components: {
+        'cpn': cpn
+      }
+    });
+  </script>
+</body>
+</html>

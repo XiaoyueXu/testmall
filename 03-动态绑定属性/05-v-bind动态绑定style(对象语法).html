@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- <h2 :style="{key(属性名): value(属性值)}">{{message}}</h2> -->
+    <!-- 
+      注意： 
+      ·如果下面的 50px 不加引号，vue 解析时会将其看作变量名为 50px 的变量，
+      就会去 data 区找。如果找不到，则会报错。因此，需要给 50px 加单引号，
+      解析时才会将其看作字符串。
+
+     -->
+    <!-- <h2 :style="{fontSize: finalSize + 'px', color: finalColor}">{{message}}</h2> -->
+    <h2 :style="getStyles()">{{message}}</h2>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好呀',
+        finalSize: 50,
+        finalColor: 'red'
+      }, 
+      methods: {
+        getStyles: function() {
+          return {fontSize: this.finalSize + 'px', color: this.finalColor};
+        }
+      }
+    });
+  </script>
+</body>
+</html>

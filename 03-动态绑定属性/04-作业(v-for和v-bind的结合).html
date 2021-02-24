@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 
+      现在实现一个功能：
+        点击列表里的一个元素，该元素就变成红色。
+     -->
+    <ul>
+      <!-- 注意，这里遍历的是<li> -->
+      <!-- <li v-for="item in movies">{{item}}</li> -->
+
+      <li @click="changeColor(index)" :class="currentId === index ? mClass : ''" v-for="(m, index) in movies">{{index}} {{m}}</li>
+    </ul>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        movies: ['海王', '海尔兄弟', '火影忍者', '进击的巨人'],
+        currentId: -1,
+        mClass: 'mClass'
+      },
+      methods: {
+        // 每调用一次 changeColor 方法，都会重新遍历一遍所有的 li。
+        // 因此，每次点击，列表中只有一个元素变红
+        changeColor: function(index) {
+          console.log(index);
+          this.currentId = index;
+        },
+      }
+    });
+  </script>
+
+  <style>
+    .mClass {
+      color: red;
+    }
+  </style>
+</body>
+</html>

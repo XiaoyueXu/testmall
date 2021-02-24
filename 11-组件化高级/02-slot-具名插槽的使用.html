@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 在 <cpn> 标签之间填入内容，
+      所填内容即会被填充至插槽中。 -->
+    <cpn>
+      <!-- 指定插槽的名字 -->
+      <span slot="center">moon</span>
+    </cpn>
+
+    <cpn><span slot="left"><button>返回</button></span></cpn>
+
+  </div>
+
+  <template id="cpn">
+    <div>
+      <!-- 
+        给插槽起名，以区分不同位置的插槽
+       -->
+      <slot name="left"><span>左边的插槽</span></slot>
+      <slot name="center"><span>中间的插槽</span></slot>
+      <slot name="right"><span>右边的插槽</span></slot>
+    </div>
+  </template>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+
+        }
+      }
+    });
+  </script>
+</body>
+</html>

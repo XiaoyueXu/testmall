@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*
+      什么时候使用箭头函数？
+        当一个函数需要作为参数传给另一个函数时，
+        作为参数的函数会以箭头函数的形式
+
+        以前的写法：
+          setTimeout(function () {
+
+          }, 1000)
+    */
+    // setTimeout(function () {
+    //   console.log(this);
+    // }, 1000)
+
+    // setTimeout(() => {
+
+    // })
+
+    /*
+      问题：箭头函数中的 this 是如何查找的呢？
+      答案：向外层作用域中，一层层查找this，直到有 this 的定义
+    */
+    // const obj = {
+    //   aaa() {
+    //     // setTimeout(function() {
+    //     //   console.log(this); // this表示window
+    //     // })
+
+    //     setTimeout(() => {
+    //       console.log(this); // this表示obj
+    //     })
+    //   }
+    // }
+
+    const obj = {
+      aaa() {
+        setTimeout(function() {
+          setTimeout(function() {
+            console.log(this); //window
+          })
+
+          setTimeout(() => {
+            console.log(this); //window
+          })
+        })
+
+        setTimeout(() => {
+          setTimeout(function() {
+            console.log(this); //window
+          })
+
+          setTimeout(() => {
+            console.log(this); //aaa
+          })
+        })
+      }
+    }
+
+    // obj.aaa()
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  // 1. 使用setTimeout
+  // setTimeout(() => {
+  //   console.log('hello world !');
+  // }, 2000)
+
+  /* 
+    2. Promise是一个类，其入参需要传入一个函数。
+    该函数也有两个入参：resolve, reject，
+    而resolve和reject也是函数.
+    链式编程。
+  */
+  // new Promise((resolve, reject) => {
+  //   // 第一次网络请求的代码
+  //   setTimeout(() => {
+  //     resolve()
+  //   }, 2000)
+  // }).then(() => {
+  //   // 这里是对第一次发送完的请求进行处理
+  //   console.log('Hello world !');
+  //   console.log('Hello world !');
+  //   console.log('Hello world !');
+  //   console.log('Hello world !');
+
+  //   return new Promise((resolve, reject) => {
+  //     // 第二次网络请求的代码
+  //     setTimeout(() => {
+  //       resolve()
+  //     }, 2000)
+  //   }).then(() => {
+  //     // 这里是对第二次发送完的请求进行处理
+  //     /* 
+  //       所有的处理代码，都是在Promise的then里进行处理
+  //     */
+  //     console.log('Hello world 1 !');
+  //     console.log('Hello world 1 !');
+  //     console.log('Hello world 1 !');
+  //     console.log('Hello world 1 !');
+
+  //     return new Promise((resolve, reject) => {
+  //       // 第三次网络请求的代码
+  //       setTimeout(() => {
+  //         resolve()
+  //       }, 2000)
+  //     }).then(() => {
+  //       // 这里是对第三次发送完的请求进行处理
+  //       console.log('Hello world 2 !');
+  //       console.log('Hello world 2 !');
+  //       console.log('Hello world 2 !');
+  //       console.log('Hello world 2 !');
+  //     })
+  //   })
+  // })
+
+  // 3. Promise的异步和对数据的处理
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      /* 
+        网络请求成功的时候，调用resolve处理，
+        然后流程会来到then中。
+      */
+      // 这里，resolve的入参即为then的入参，表明在then中要处理该数据
+      // resolve('Hello World !')
+
+      /* 
+        网络请求失败的时候，调用reject处理，
+        然后流程会来到catch中。
+      */
+      reject('error msg')
+    }, 2000)}).then((data) => {
+      // 此处的data即为resolve中的 'Hello World !'
+      console.log(data);
+      console.log(data);
+      console.log(data);
+      console.log(data);
+    }).catch((err) => {
+      console.log(err);
+      console.log(err);
+      console.log(err);
+      console.log(err);
+    });
+</script>
+
+</html>

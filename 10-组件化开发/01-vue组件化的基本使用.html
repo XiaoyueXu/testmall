@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- <h2>我是标题</h2>
+    <p>我是内容，哈哈哈哈哈哈</p>
+    <p>我是内容，呵呵呵呵呵呵</p> -->
+
+    <!-- 使用组件显示上面的内容 -->
+    <my-cpn></my-cpn>
+    <div>
+      <my-cpn></my-cpn>
+    </div>
+  </div>
+
+  <script>
+    // ES6 里的字符串写法：``
+    // `` 的好处是，内部字符串可以换行
+    /**
+     * 组件化开发
+     * 
+     * 1. 创建组件构造器对象
+     * 2. 注册组件
+     * 3. 在 vue 实例内使用组件
+     **/
+    // 1、创建组件构造器对象
+    const cpnConstructor = Vue.extend({
+      template: `
+      <div>
+        <h2>我是标题</h2>
+        <p>我是内容，哈哈哈哈哈哈</p>
+        <p>我是内容，呵呵呵呵呵呵</p>
+      </div>
+        `
+    });
+
+    // 2、注册组件
+    // Vue.component('组件的标签名')
+    Vue.component('my-cpn', cpnConstructor);
+
+
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        
+      }
+    });
+  </script>
+</body>
+</html>
